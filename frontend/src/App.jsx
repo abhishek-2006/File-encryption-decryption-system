@@ -25,8 +25,8 @@ export default function App() {
   const handleProcess = async () => {
     if (!file || !password) return;
     
-    // Automatically determine mode based on extension
-    const mode = file.name.endsWith('.enc') ? 'decrypt' : 'encrypt';
+    const isEncrypted = file.name.endsWith('.enc');
+    const mode = isEncrypted ? 'decrypt' : 'encrypt';
     
     setIsProcessing(true);
     addLog(`Initiating ${mode}ion sequence...`);
@@ -36,8 +36,13 @@ export default function App() {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = mode === "encrypt" ? `${file.name}.enc` : file.name.replace(".enc", "");
+      if (mode === "encrypt") {
+        link.download = `${file.name}.enc`;
+      } else {
+        link.download = file.name.replace(/\.enc$/, "");
+      }
       link.click();
+      window.URL.revokeObjectURL(url);
       
       addLog(`${mode.toUpperCase()}ION_SUCCESS: Payload released.`);
       
@@ -49,7 +54,7 @@ export default function App() {
       }, 2000);
       
     } catch (err) {
-      addLog(`CRITICAL_ERROR: ${err.message}`);
+      addLog(`CRITICAL ERROR: ${err.message}`);
     } finally {
       setIsProcessing(false);
     }
@@ -138,13 +143,13 @@ export default function App() {
               <button 
                 onClick={handleProcess}
                 disabled={isProcessing}
-                className={`w-full py-8 border-2 font-black tracking-[0.8em] transition-all relative overflow-hidden group
+                className={`w-full py-8 border-2 font-black tracking-[0.4em] transition-all relative overflow-hidden group
                   ${file?.name.endsWith('.enc') 
                     ? 'border-emerald-500 text-emerald-500 hover:shadow-[0_0_40px_rgba(16,185,129,0.3)]' 
                     : 'border-cyan-500 text-cyan-500 hover:shadow-[0_0_40px_rgba(6,182,212,0.3)]'}`}
               >
                 <span className="relative z-10">
-                  {file?.name.endsWith('.enc') ? 'RUN::DECRYPT' : 'RUN::ENCRYPT'}
+                  {file?.name.endsWith('.enc') ? 'DECRYPT FILE' : 'ENCRYPT FILE'}
                 </span>
               </button>
               

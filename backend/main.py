@@ -60,6 +60,19 @@ async def decrypt_file(file: UploadFile = File(...), password: str = Form(...)):
         unpadder = padding.PKCS7(128).unpadder()
         plaintext = unpadder.update(padded_plaintext) + unpadder.finalize()
 
-        return StreamingResponse(io.BytesIO(plaintext), media_type="application/octet-stream")
+        original_name = file.filename
+        if original_name.endswith('.enc'):
+            clean_name = original_name.rsplit('.enc', 1)[0]
+        else:
+            clean_name = original_name
+
+        return StreamingResponse(
+            io.BytesIO(plaintext), 
+            media_type="application/octet-stream",
+            headers={
+                "Content-Disposition": f"attachment; filename={clean_name}",
+                "Access-Control-Expose-Headers": "Content-Disposition"
+            }
+        )
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid key or corrupted file")
