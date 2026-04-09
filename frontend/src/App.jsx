@@ -117,6 +117,7 @@ export default function App() {
               <div className="relative">
                 <input 
                   autoFocus
+                  required
                   type="password"
                   placeholder="ENTER PRIVATE KEY"
                   className="w-full bg-transparent border-b-2 border-cyan-900 p-6 outline-none focus:border-cyan-500 text-3xl tracking-[0.2em] transition-all font-bold text-center"
@@ -124,9 +125,15 @@ export default function App() {
                   onChange={(e) => setPassword(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && setStep(3)}
                 />
+                {password.length === 0 && (
+                  <div className="text-[10px] text-red-500/60 text-center mt-2 animate-pulse tracking-widest">
+                    FIELD REQUIRED: SECRET KEY MISSING
+                  </div>
+                )}
               </div>
               <button 
-                onClick={() => setStep(3)}
+                onClick={() => password.trim() !== "" ? setStep(3) : addLog("ERROR: Key Required")}
+                disabled={password.trim() === ""}
                 className="w-full text-xs font-black border-2 border-cyan-500 py-4 hover:bg-cyan-500 hover:text-black transition-all shadow-[0_0_25px_rgba(6,182,212,0.2)] tracking-[0.2em]"
               >
                 CONFIRM IDENTITY
