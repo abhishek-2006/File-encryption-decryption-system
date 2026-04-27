@@ -208,7 +208,7 @@ export default function App() {
               Made with <i className="fas fa-heart text-red-500" /> by
             <a href="https://abhishekshah-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="mx-1 text-cyan-500 transition-colors hover:text-purple-400">
               Abhishek Shah
-            </a>
+            </a> 
           </p>
         </div>
       </footer>
