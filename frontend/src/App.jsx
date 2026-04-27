@@ -58,13 +58,13 @@ export default function App() {
     
     <div className="h-screen w-screen bg-[#050505] text-cyan-500 font-mono flex flex-col overflow-hidden selection:bg-cyan-500 selection:text-black">
       
-      {/* Visual Identity - Scaled for Fullscreen Header */}
+      {/* Visual Identity */}
       <div className="flex-none pt-8 pb-4 text-center">
         <div className="text-4xl font-black tracking-tighter mb-1 glow-text">CRYPTVAULT</div>
         <div className="text-[10px] tracking-[0.3em] opacity-40 uppercase italic">Neural Encryption Interface</div>
       </div>
 
-      {/* MAIN TERMINAL GRID - flex-1 fills remaining vertical space */}
+      {/* MAIN TERMINAL GRID */}
       <div className="flex-1 max-w-[1600px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-px bg-cyan-900/20 border-y border-cyan-900/30 overflow-hidden relative">
         
         {/* Processing Overlay */}
@@ -91,7 +91,7 @@ export default function App() {
           ))}
         </div>
 
-        {/* Stage 2: Interaction Terminal - The center "engine" */}
+        {/* Stage 2: Interaction Terminal */}
         <div className="lg:col-span-7 flex flex-col justify-center p-12 bg-gradient-to-b from-transparent to-cyan-950/5 relative">
           
           {/* Decorative Corner Brackets */}
@@ -134,7 +134,7 @@ export default function App() {
               <button 
                 onClick={() => password.trim() !== "" ? setStep(3) : addLog("ERROR: Key Required")}
                 disabled={password.trim() === ""}
-                className="w-full text-xs font-black border-2 border-cyan-500 py-4 hover:bg-cyan-500 hover:text-black transition-all shadow-[0_0_25px_rgba(6,182,212,0.2)] tracking-[0.2em]"
+                className="cursor-pointer w-full text-xs font-black border-2 border-cyan-500 py-4 hover:bg-cyan-500 hover:text-black transition-all shadow-[0_0_25px_rgba(6,182,212,0.2)] tracking-[0.2em]"
               >
                 CONFIRM IDENTITY
               </button>
@@ -153,7 +153,7 @@ export default function App() {
               <button 
                 onClick={handleProcess}
                 disabled={isProcessing}
-                className={`w-full py-10 border-2 font-black tracking-[0.2em] transition-all text-xl
+                className={`cursor-pointer w-full py-10 border-2 font-black tracking-[0.2em] transition-all text-xl
                   ${file?.name.endsWith('.enc') 
                     ? 'border-emerald-500 text-emerald-500 hover:shadow-[0_0_50px_rgba(16,185,129,0.4)] bg-emerald-950/5' 
                     : 'border-cyan-500 text-cyan-500 hover:shadow-[0_0_50px_rgba(6,182,212,0.4)] bg-cyan-950/5'}`}
@@ -163,7 +163,7 @@ export default function App() {
               
               <button 
                 onClick={() => setStep(1)} 
-                className="text-[10px] opacity-30 hover:opacity-100 uppercase tracking-[0.2em] transition-opacity underline decoration-cyan-900"
+                className="text-[10px] opacity-30 hover:opacity-100 uppercase tracking-[0.2em] transition-opacity underline decoration-cyan-900 cursor-pointer"
               >
                 Abort Protocol
               </button>
@@ -171,12 +171,12 @@ export default function App() {
           )}
         </div>
 
-        {/* Stage 3: Live Output Streams - Fixed vertical height with scrollable logs */}
+        {/* Stage 3: Live Output Streams */}
         <div className="lg:col-span-3 bg-black/80 flex flex-col overflow-hidden">
           <div className="flex-1 p-8 overflow-hidden flex flex-col">
             <div className="flex-none text-[11px] font-black text-cyan-900 uppercase mb-6 tracking-[0.2em] border-b border-cyan-900/30 pb-2">Telemetry Feed</div>
             
-            {/* LOG CONTAINER: overflow-y-auto allows internal scrolling */}
+            {/* LOG CONTAINER */}
             <div className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-hide">
               {terminalLogs.map((log, i) => (
                 <div key={i} className="text-[11px] leading-relaxed break-all font-medium border-l-2 border-cyan-900 pl-4 py-2 bg-cyan-950/10 animate-in fade-in slide-in-from-left-2">
@@ -201,7 +201,7 @@ export default function App() {
 
       </div>
 
-      {/* Fullscreen Footer - Tightened for minimalist look */}
+      {/* Fullscreen Footer */}
       <footer className="flex-none py-6 text-center">
         <div className="inline-flex items-center gap-6 px-10 py-3 bg-[#0a0a0a] rounded-full border border-cyan-900/40 shadow-2xl group hover:border-cyan-500 transition-all">
           <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] group-hover:text-cyan-400 transition-colors">
