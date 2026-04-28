@@ -58,16 +58,6 @@ The frontend will typically run on `http://localhost:5173`.
 2. **Identity:** Enter your secret password (private key).
 3. **Release:** The system streams the file to the backend, encrypts/decrypts the bitstream in memory, and instantly returns the processed file to your local machine.
 
-## Deployment
-
-This repository is configured for seamless deployment on **Vercel**.
-The included `vercel.json` handles static routing for the React app and serverless function routing for the FastAPI backend.
-
-```bash
-npm i -g vercel
-vercel
-```
-
 ## Security Warning
 
 This tool encrypts files entirely based on the password you provide. **If you lose or forget your password, there is absolutely no way to recover your encrypted files.** Always keep your passwords stored safely in a password manager.
