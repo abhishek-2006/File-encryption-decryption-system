@@ -126,7 +126,7 @@ export default function App() {
                   onKeyPress={(e) => e.key === 'Enter' && setStep(3)}
                 />
                 {password.length === 0 && (
-                  <div className="text-[10px] text-red-500/60 text-center mt-2 animate-pulse tracking-widest">
+                  <div className="text-[12px] text-red-500 text-center mt-2 tracking-widest">
                     FIELD REQUIRED: SECRET KEY MISSING
                   </div>
                 )}
@@ -136,7 +136,7 @@ export default function App() {
                 disabled={password.trim() === ""}
                 className="cursor-pointer w-full text-xs font-black border-2 border-cyan-500 py-4 hover:bg-cyan-500 hover:text-black transition-all shadow-[0_0_25px_rgba(6,182,212,0.2)] tracking-[0.2em]"
               >
-                CONFIRM IDENTITY
+                CONFIRM PASSWORD
               </button>
             </div>
           )}
@@ -163,9 +163,9 @@ export default function App() {
               
               <button 
                 onClick={() => setStep(1)} 
-                className="text-[10px] opacity-30 hover:opacity-100 uppercase tracking-[0.2em] transition-opacity underline decoration-cyan-900 cursor-pointer"
+                className="text-[12px] uppercase tracking-[0.2em] transition-opacity underline decoration-cyan-900 cursor-pointer"
               >
-                Abort Protocol
+                Abort Mission
               </button>
             </div>
           )}
